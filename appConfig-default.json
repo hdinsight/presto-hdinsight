@@ -1,0 +1,29 @@
+                                                                                                                                                                         {
+  "schema": "http://example.org/specification/v2.0.0",
+  "metadata": {
+  },
+  "global": {
+    "site.global.data_dir": "/var/lib/presto/data",
+    "site.global.config_dir": "/var/lib/presto/etc",
+    "site.global.app_name": "presto-server-0.174",
+    "site.global.app_pkg_plugin": "${AGENT_WORK_ROOT}/app/definition/package/plugins/",
+    "site.global.singlenode": "false",
+    "site.global.coordinator_host": "${COORDINATOR_HOST}",
+    "site.global.presto_query_max_memory": "728GB",
+    "site.global.presto_query_max_memory_per_node": "56GB",
+    "site.global.presto_server_port": "9090",
+    // Example of how to configure connectors
+    "site.global.catalog": "{'cosmosdb': ['connector.name=mongodb','mongodb.<ACCOUNT NAME>.documents.azure.com:10255','mongodb.credentials=<USER NAME>:<PASSWORD>@<COLLECTION NAME>','mongodb.ssl.enabled=true'],'sqlserver': ['connector.name=sqlserver','connection-url=jdbc:sqlserver://<DATABASE SERVER>.database.windows.net:1433;database=<DATABASE NAME>;user=<USER NAME>@<SERVER NAME>;password=<PASSWORD>;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;', 'connection-user=<USER NAME>','connection-password=<PASSWORD>'],'hive': ['connector.name=hive-hadoop2','hive.metastore.uri=thrift://hn0-xxxx.340aizga0o4ehlr2vhae25fxwb.cx.internal.cloudapp.net:9083,thrift://<THRIFT URL>', 'hive.config.resources=/etc/hadoop/conf/hdfs-site.xml,/etc/hadoop/conf/core-site.xml'], 'tpch': ['connector.name=tpch']}",
+   
+    "site.global.jvm_args": "['-server', '-Xmx95G', '-XX:+UseG1GC', '-XX:G1HeapRegionSize=32M', '-XX:+UseGCOverheadLimit', '-XX:+ExplicitGCInvokesConcurrent', '-XX:+HeapDumpOnOutOfMemoryError', '-XX:OnOutOfMemoryError=kill -9 %p']",
+    "site.global.log_properties": "['com.facebook.presto=WARN']",
+    "site.global.event_listener_properties": "['event-listener.name=event-logger']",
+    "application.def": ".slider/package/presto1/presto-yarn-package.zip",
+    "java_home": "/usr/lib/jvm/java"
+  },
+  "components": {
+    "slider-appmaster": {
+      "jvm.heapsize": "512M"
+    }
+  }
+}
