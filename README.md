@@ -20,7 +20,7 @@ If you want to configure additional connectors, you can pass the catalog configu
 # Airpal
 To optionally install [airpal](https://github.com/airbnb/airpal), 
 
-1. SSH to the cluster and run the following command to known address of the presto server
+1. SSH to the cluster and run the following command to find out the address of the presto server
     ```
     sudo slider registry  --name presto1 --getexp presto
     ```
