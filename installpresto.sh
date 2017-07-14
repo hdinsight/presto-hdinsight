@@ -32,10 +32,18 @@ if [[ $(hostname -s) = hn* ]]; then
   wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/$VERSION/presto-cli-$VERSION-executable.jar -O /usr/local/bin/presto-cli
   chmod +x /usr/local/bin/presto-cli
 
-  until slider registry  --name presto1 --getexp presto ; do
+  retry=0
+
+  until [[ slider registry  --name presto1 --getexp presto || retry -ge 60 ]]; do
     echo "waiting for presto to start.."
+    let retry+=1
     sleep 10
   done
+
+  if [ "$retry" -ge 60 ]; then
+    echo "[Error] Still waiting after 10 mins. Exiting!"
+    exit 2
+  fi
 
   cat > /usr/local/bin/presto <<EOF
 #!/bin/bash
